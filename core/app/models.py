@@ -19,7 +19,7 @@ class Notification(models.Model):
         } 
         data = async_to_sync(channel.group_send)("test_group", {
             "type": "send_notification",
-            "message": json.dumps(data)
+            "message": data
             })
         
         

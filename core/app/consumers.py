@@ -20,12 +20,11 @@ class TestClass(WebsocketConsumer):
         print("❌ WebSocket connection closed with code:", close_code)
         self.close()
        
-
     def receive(self, text_data):
-        
+        text_data = json.loads(text_data)
         self.send(text_data=json.dumps({"message": "websocket message received", "data": text_data}))   
     def send_notification(self,event):
         print(event)
-        event = json.loads(event)
+        # event = json.loads(event['data'])
         print(event)
-        self.send(text_data=json.dumps({"message": "websocket notification received", "data": event["data"]}))
+        self.send(text_data=json.dumps({"message": "websocket notification received", "notification": event["message"]}))
